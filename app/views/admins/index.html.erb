@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="page-header">
+			  <h1>Página Inicio</h1>
+			</div>
+		</div>
+	</div>
+	<%= form_for @page do |page_form| %>
+  <% @page.contents.each do |content| %>
+    <%= page_form.fields_for content, index: content.id do |content_form|%>
+    	<div class ="form-group">
+    	<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+				<h3>Sección</h3>
+				<%= content_form.text_field :section, class: "form-control"%>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h3>Contenido</h3>
+				<%= content_form.text_area :text, class: "form-control" %>
+			</div>
+		</div>
+		</div>
+    <% end %>
+  <% end %>
+  <%= page_form.submit "Guardar" %>
+<% end %>
+</div>
+
